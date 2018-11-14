@@ -431,9 +431,6 @@ The first thing you can do is plot all the values on a single plot so you can ge
 
     df.plot()
 
-![alt text](https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png)
-
-
 
 
 
