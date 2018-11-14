@@ -1,6 +1,8 @@
 # Data-Analysis-Notebook
 
 
+HOW TO PUT IMAGES ON GITHUB, INCLUDE EXAMPLES FOR DATA MANIPULATION (GROUPBY, TOKENIZING, ENCODING STUFF)
+
 The process taken for each these datasets is similar as they follow this pattern:
 
 
@@ -26,6 +28,7 @@ df = pd.read_csv(cleveland_data, header = None, index_col = False, delimiter = '
 
 
 ***CSV : pandas***
+
 import pandas as pd
 df = pd.read_csv('https://perso.telecom-paristech.fr/eagan/class/igr204/data/TimeUse.csv')
 
@@ -352,6 +355,7 @@ After reading through the dataset and getting a table of values, we want to get 
       .dtypes() : datatype (category, float64, string, object)
      .nunique() : number of non-unique values in series
         .plot() : plot of all data values in dataframe
+.value_counts() : lists out all of the categories and how many values are in each
         
         
 ## 3. Cleaning data into readable format
@@ -374,3 +378,151 @@ WeatherHrly : code incorporated in parser
 This structure extracts specific data from within the dataframe and categorizes all of the data by grouping to a certain value in a category. This returns multiple tables grouping the different outputs in the category you specify. The best way to use this approach is by identifying which category has the smallest number of unique values because the number of categories will be reasonable (typically choose a column with 3-20 unique values so as not to produce more than 20 tables). You can gain more information by choosing to groupby and getting the mean, max, min, etc in each category of the dataframe.
 
 
+### *Tokenizing*:
+Tokenizing is a useful technique if the data you have includes strings. What this method does is it takes the values in a category and makes it into a list. Within that list, each word is separated into a single string.    
+
+
+from nltk.tokenize import word_tokenize
+tokens = xml_df['LIGHT']. apply(word_tokenize) 
+
+
+As mentioned, this method produces a large list with sublists consisting of the strings. To have all of the strings combined into a single list, you can do so by adding the following code:
+
+
+flattened_list = []
+for x in tokens:
+    for y in x:
+        flattened_list.append(y)
+print flattened_list
+
+
+
+### *Label Encoding*:
+Label encoding is a useful way of reassigning different results in a category to a numerical value. Note: the category results need to be a "category" datatype before applying the code to encode the results.
+
+xml_df['LIGHT']= xml_df['LIGHT'].astype('category')      #convert 'LIGHT' from obj to category
+xml_df["LIGHT_LE"] = xml_df["LIGHT"].cat.codes              #label encoding
+
+### *Binary*:
+
+The point of binary coding serves as a similar purpose to label encoding where results get reassigned to different values. The only difference is that instead of having different numbers assigned according to the different results, binary encoding labels only one result with 1 and everything else is 0. This makes any comparison focused only on the column labeled "1" since all values don't produce an output.
+
+
+xml_df["ZONE_binary"] = np.where(xml_df["ZONE"].str.contains("Annual"), 1, 0)
+
+
+## 5. Data Visualization
+
+### *Plots*:
+
+***All Data:***
+
+The first thing you can do is plot all the values on a single plot so you can get an idea of general trends and values in the data.
+
+df.plot()
+
+***Log Plot:***
+
+It is useful to make a log plot to see the scale of the results.
+
+df.plot()
+plt.yscale('log')
+
+
+
+***Histogram***
+
+A histogram distributes the results into bins depending on what the output result is.
+
+num_bins = 5
+n, bins, patches = plt.hist(x, num_bins, alpha=0.5)
+
+
+***Scatterplot***
+
+This is good for comparing two parameters and seeing if there are any strong correlations.
+
+x = df['MaxHR']
+y = df['RestBP']
+plt.scatter(x, y, alpha=0.5)
+
+
+***Heatmap***
+
+This heatmap gives a correlation value for all parameters relative to each other. It is very nice to visually determine whether one category is correlated to another based on the color. Note: it is expected that categories compared against each other are going to be 1 meaning exact same correlation). In the plot, there should be a diagonal of 1s and both sides opposite of the diagonal should be symmetric to each other. 
+
+f,ax = plt.subplots(figsize=(18, 16))
+sns.heatmap(df.corr(), annot=True, linewidths=.8, fmt= '.1f',ax=ax)
+plt.show()
+
+
+***Pie charts (single and multiple)***
+
+If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way.
+
+plt.pie()
+
+You can have multiple pie charts to compare percentages relative to each other if there is data for multiple entries
+
+
+fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8), (ax9, ax10), (ax11, ax12), (ax13, ax14)) = plt.subplots(7, 2, figsize = (70,70), subplot_kw={'aspect':'equal'})
+
+axX.pie(dataX)
+
+
+plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+
+
+***Bar Graph***
+
+This may look similar to a histogram but doesn't necessarily try to fit the results into a bell curve. Instead it just gives the actual value for each category. Representing the data in a horizontal bar graph gives a nice comparison for the different categories.
+
+
+import matplotlib.pyplot as plt; plt.rcdefaults()
+plt.figure(figsize=(10,7))
+
+plt.barh(np.arange(len(light.index)), light.values)
+plt.yticks(np.arange(len(light.index)), light.index)
+
+
+***Wordcloud***
+
+A word cloud is a nice way of visualizing words depending on the frequency of their use. The size of the word correlates to the number of times the word is found in the category.
+
+
+from wordcloud import WordCloud, STOPWORDS 
+wordcloud = WordCloud().generate(' '.join(xml_df['LIGHT']))
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
+
+
+
+## 6. Statistical testing
+
+For the following tests to take place, the values within the categories have to be integars or floats. In the case that they are not, you can always apply label encoding or binary code to reassign the results into an integar value.
+
+### T-test
+
+A T-test is used to determine if there's significant difference between the mean of 2 groups. For the 2 groups, there's always an independent (eg gender) and dependent (eg test scores) variable. If the independent variable has more than one outcome, use ANOVA. Testing done to determine to what degree of confidence the difference between means of 2 groups did not occur by chance. Infer that dependent variable fits normal distribution so we can always predict what the outcome is.
+
+This test returns (t-score, two-tailed p-value)
+
+Larger t score -> Larger difference between both groups
+Smaller p value -> Less probability that results were by chance
+
+
+cat1 = xml_df['LIGHT_LE']
+cat2 = xml_df['ZONE_LE']
+ttest_ind(cat1, cat2)
+
+
+### Pearson Correlation
+
+Pearson correlation test gives strongest linear correlation between 2 groups, expressed in terms of r between and including -1 and +1. 0 means there's no correlation. The sign indicates that there can be either positively or negatively correlated. 
+
+The result is give as (Pearson's correlation coefficient, 2-tailed p-value)
+
+x = xml_df['ZONE_LE']
+y = xml_df['PRICE']
+pearsonr(x, y)
