@@ -43,8 +43,8 @@ One method of extracting the data can be by saving the datafile to a location on
 
 ***XML : parser***
 
-user_agent_url = 'https://www.w3schools.com/xml/plant_catalog.xml'
-xml_data = requests.get(user_agent_url).content
+    user_agent_url = 'https://www.w3schools.com/xml/plant_catalog.xml'
+    xml_data = requests.get(user_agent_url).content
 
     class XML2DataFrame:
 
@@ -350,18 +350,25 @@ The best way to manipulate data in such an organized way is through a pandas dat
 ## 2. Gathering Basic Info
 
 After reading through the dataset and getting a table of values, we want to get a basic understanding of what the data is presenting. The following commands give a general idea as to what information is being extracted. 
-        .info() : number of non-null values in column + datatype
-    .describe() : count, mean, std, 25/50/75th percentiles, min and max values
+
+.info() : number of non-null values in column + datatype
+
+.describe() : count, mean, std, 25/50/75th percentiles, min and max values
+
 .isnull().sum() : total number of non-null values
-      .dtypes() : datatype (category, float64, string, object)
-     .nunique() : number of non-unique values in series
-        .plot() : plot of all data values in dataframe
+  
+.dtypes() : datatype (category, float64, string, object)
+    
+.nunique() : number of non-unique values in series
+     
+.plot() : plot of all data values in dataframe
+
 .value_counts() : lists out all of the categories and how many values are in each
         
         
 ## 3. Cleaning data into readable format
 
-After importing datavalues, you may need to adjust or remove the data for certain functions to be applied. 
+After importing data values, you may need to adjust or remove the data for certain functions to be applied. 
 
 HeartDiseaseSet1CSV : data was already clean
 
@@ -418,24 +425,26 @@ The point of binary coding serves as a similar purpose to label encoding where r
 
 ## 5. Data Visualization
 
-### *Plots*:
-
-***All Data:***
+### *General Plot*
 
 The first thing you can do is plot all the values on a single plot so you can get an idea of general trends and values in the data.
 
     df.plot()
 
-***Log Plot:***
+![alt text](https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png)
+
+
+
+
+
+### *Log Plot*
 
 It is useful to make a log plot to see the scale of the results.
 
     df.plot()
     plt.yscale('log')
 
-
-
-***Histogram***
+### *Histogram*
 
 A histogram distributes the results into bins depending on what the output result is.
 
@@ -443,7 +452,7 @@ A histogram distributes the results into bins depending on what the output resul
     n, bins, patches = plt.hist(x, num_bins, alpha=0.5)
 
 
-***Scatterplot***
+### *Scatterplot*
 
 This is good for comparing two parameters and seeing if there are any strong correlations.
 
@@ -452,7 +461,7 @@ This is good for comparing two parameters and seeing if there are any strong cor
     plt.scatter(x, y, alpha=0.5)
 
 
-***Heatmap***
+### *Heatmap*
 
 This heatmap gives a correlation value for all parameters relative to each other. It is very nice to visually determine whether one category is correlated to another based on the color. Note: it is expected that categories compared against each other are going to be 1 meaning exact same correlation). In the plot, there should be a diagonal of 1s and both sides opposite of the diagonal should be symmetric to each other. 
 
@@ -461,7 +470,7 @@ This heatmap gives a correlation value for all parameters relative to each other
     plt.show()
 
 
-***Pie charts (single and multiple)***
+### *Pie Charts*
 
 If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way.
 
@@ -477,7 +486,7 @@ You can have multiple pie charts to compare percentages relative to each other i
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
 
 
-***Bar Graph***
+### *Bar Graph*
 
 This may look similar to a histogram but doesn't necessarily try to fit the results into a bell curve. Instead it just gives the actual value for each category. Representing the data in a horizontal bar graph gives a nice comparison for the different categories.
 
@@ -489,7 +498,7 @@ This may look similar to a histogram but doesn't necessarily try to fit the resu
     plt.yticks(np.arange(len(light.index)), light.index)
 
 
-***Wordcloud***
+### *Wordcloud*
 
 A word cloud is a nice way of visualizing words depending on the frequency of their use. The size of the word correlates to the number of times the word is found in the category.
 
