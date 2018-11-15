@@ -431,7 +431,7 @@ The first thing you can do is plot all the values on a single plot so you can ge
 
     df.plot()
 
-
+![alt text](images/all_plot.png)
 
 
 ### *Log Plot*
@@ -441,12 +441,17 @@ It is useful to make a log plot to see the scale of the results.
     df.plot()
     plt.yscale('log')
 
+![alt text](images/log_plot.png)
+
+
 ### *Histogram*
 
 A histogram distributes the results into bins depending on what the output result is.
 
     num_bins = 5
     n, bins, patches = plt.hist(x, num_bins, alpha=0.5)
+
+![alt text](images/histogram.png)
 
 
 ### *Scatterplot*
@@ -457,6 +462,8 @@ This is good for comparing two parameters and seeing if there are any strong cor
     y = df['RestBP']
     plt.scatter(x, y, alpha=0.5)
 
+![alt text](images/scatterplot.png)
+
 
 ### *Heatmap*
 
@@ -466,12 +473,17 @@ This heatmap gives a correlation value for all parameters relative to each other
     sns.heatmap(df.corr(), annot=True, linewidths=.8, fmt= '.1f',ax=ax)
     plt.show()
 
+![alt text](images/heatmap.png)
+
 
 ### *Pie Charts*
 
 If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way.
 
     plt.pie()
+
+![alt text](images/single_pie_plot.png)
+
 
 You can have multiple pie charts to compare percentages relative to each other if there is data for multiple entries
 
@@ -481,6 +493,8 @@ You can have multiple pie charts to compare percentages relative to each other i
     axX.pie(dataX)
 
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+
+![alt text](images/multiple_pie_plot.png)
 
 
 ### *Bar Graph*
@@ -494,6 +508,8 @@ This may look similar to a histogram but doesn't necessarily try to fit the resu
     plt.barh(np.arange(len(light.index)), light.values)
     plt.yticks(np.arange(len(light.index)), light.index)
 
+![alt text](images/barh.png)
+
 
 ### *Wordcloud*
 
@@ -505,6 +521,8 @@ A word cloud is a nice way of visualizing words depending on the frequency of th
     plt.imshow(wordcloud)
     plt.axis("off")
     plt.show()
+
+![alt text](images/wordcloud.png)
 
 
 
