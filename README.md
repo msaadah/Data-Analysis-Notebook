@@ -1,7 +1,7 @@
 # Data-Analysis-Notebook
 
 
-HOW TO PUT IMAGES ON GITHUB, INCLUDE EXAMPLES FOR DATA MANIPULATION (GROUPBY, TOKENIZING, ENCODING STUFF)
+INCLUDE EXAMPLES FOR DATA MANIPULATION (GROUPBY, TOKENIZING, ENCODING STUFF)
 
 The process taken for each these datasets is similar as they follow this pattern:
 
@@ -553,3 +553,24 @@ Pearson correlation test gives strongest linear correlation between 2 groups, ex
     pearsonr(x, y)
     
 The result is gives: (Pearson's correlation coefficient, 2-tailed p-value)
+
+
+
+
+
+
+## Useful things for Jupyter Notebook/GitHub interface
+
+### How to upload figures to README file
+
+To insert an image into a README file, you first have to save the file from the jupyter notebook using the following command:
+
+    plt.savefig('image_name.png')
+    
+Tip: This code needs to go *before* plt.show() or else the image won't display when saved
+
+Check to see where the image is in the jupyter notebook. You can either keep it with all the other files or move it to an images folder. In the README file, you can add the following code to the area you want the image to be placed. 
+
+    ![alt text](image_name.png)
+    ![alt text](images/image_name.png)    #use if placed plot images in another folder labeled "images"
+
