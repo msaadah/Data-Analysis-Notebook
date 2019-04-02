@@ -2,11 +2,14 @@
 
 
 INCLUDE EXAMPLES FOR DATA MANIPULATION (GROUPBY, TOKENIZING, ENCODING STUFF)
+CHRONOLOGICAL NUMBERING SYSTEM
+MOVE DATA FOLDER INTO INDIVIDUAL FOLDERS
+
 
 The process taken for each these datasets is similar as they follow this pattern:
 
 
-## 1. Importing packages
+## 1. Importing packages and Reading Data
 
 The first thing you will find at the top of all dataset files are packages. This is done to keep the file organized and to keep track of which modules have been imported already. 
 
@@ -351,24 +354,28 @@ The best way to manipulate data in such an organized way is through a pandas dat
 
 After reading through the dataset and getting a table of values, we want to get a basic understanding of what the data is presenting. The following commands give a general idea as to what information is being extracted. 
 
-.info() : number of non-null values in column + datatype
+A) .info() : number of non-null values in column + datatype
 
-.describe() : count, mean, std, 25/50/75th percentiles, min and max values
+B) .dtypes() : datatype (category, float64, string, object)
 
-.isnull().sum() : total number of non-null values
-  
-.dtypes() : datatype (category, float64, string, object)
-    
-.nunique() : number of non-unique values in series
+C) .describe() : count, mean, std, 25/50/75th percentiles, min and max values
+
+D) .isnull().sum() : total number of non-null values
      
-.plot() : plot of all data values in dataframe
-
-.value_counts() : lists out all of the categories and how many values are in each
+E) .nunique() : number of non-unique values in series
+     
+F) .value_counts() : lists out all of the categories and how many values are in each
         
         
 ## 3. Cleaning data into readable format
 
 After importing data values, you may need to adjust or remove the data for certain functions to be applied. 
+
+### A)
+#### CSV:
+
+Countries of the World: 
+1. Removing commas to convert numbers from object to float
 
 HeartDiseaseSet1CSV : data was already clean
 
@@ -376,12 +383,20 @@ TimeUseSet2CSV :
 1. Time was presented as HH:MM, however in a pandas dataframe python is only able to manipulate the data if it is in HH:MM:SS format. After converting to HH:MM:SS, the time value need to be converted to an hour value (eg 10:30:00 = 10.5 hours, not 10.3)
 2. Combining similar column name columns together: there were a lot of misc columns that could be combined to a single one. 
 
+#### XML:
 PlantsSet3XML : data was already clean
 
 FinVizStreamData : code incorporated in parser
 
 WeatherHrly : code incorporated in parser
 
+### B)
+
+After cleaning data, it's best to gather basic information done in step 2 to make sure the data is properly cleaned. 
+
+1) .dtypes() : datatype (category, float64, string, object)
+
+2) .describe() : count, mean, std, 25/50/75th percentiles, min and max values
 
 
 ## 4. Manipulating Data
@@ -425,7 +440,7 @@ The point of binary coding serves as a similar purpose to label encoding where r
 
 ## 5. Data Visualization
 
-### *General Plot*
+### *A) General Plot*
 
 The first thing you can do is plot all the values on a single plot so you can get an idea of general trends and values in the data.
 
@@ -434,7 +449,7 @@ The first thing you can do is plot all the values on a single plot so you can ge
 ![alt text](images/all_plot.png)
 
 
-### *Log Plot*
+### *B) Log Plot*
 
 It is useful to make a log plot to see the scale of the results.
 
@@ -444,7 +459,7 @@ It is useful to make a log plot to see the scale of the results.
 ![alt text](images/log_plot.png)
 
 
-### *Histogram*
+### *C) Histogram*
 
 A histogram distributes the results into bins depending on what the output result is.
 
@@ -454,7 +469,7 @@ A histogram distributes the results into bins depending on what the output resul
 ![alt text](images/histogram.png)
 
 
-### *Scatterplot*
+### *D) Scatterplot*
 
 This is good for comparing two parameters and seeing if there are any strong correlations.
 
@@ -465,7 +480,22 @@ This is good for comparing two parameters and seeing if there are any strong cor
 ![alt text](images/scatterplot.png)
 
 
-### *Heatmap*
+### *E) Bar Graph*
+
+This may look similar to a histogram but doesn't necessarily try to fit the results into a bell curve. Instead it just gives the actual value for each category. Representing the data in a horizontal bar graph gives a nice comparison for the different categories.
+
+
+    import matplotlib.pyplot as plt; plt.rcdefaults()
+    plt.figure(figsize=(10,7))
+
+    plt.barh(np.arange(len(light.index)), light.values)
+    plt.yticks(np.arange(len(light.index)), light.index)
+
+![alt text](images/barh.png)
+
+
+
+### *F) Heatmap*
 
 This heatmap gives a correlation value for all parameters relative to each other. It is very nice to visually determine whether one category is correlated to another based on the color. Note: it is expected that categories compared against each other are going to be 1 meaning exact same correlation). In the plot, there should be a diagonal of 1s and both sides opposite of the diagonal should be symmetric to each other. 
 
@@ -476,7 +506,8 @@ This heatmap gives a correlation value for all parameters relative to each other
 ![alt text](images/heatmap.png)
 
 
-### *Pie Charts*
+
+### *G) Pie Charts*
 
 If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way.
 
@@ -497,21 +528,27 @@ You can have multiple pie charts to compare percentages relative to each other i
 ![alt text](images/multiple_pie_plot.png)
 
 
-### *Bar Graph*
+### *H) Box Plot*
 
-This may look similar to a histogram but doesn't necessarily try to fit the results into a bell curve. Instead it just gives the actual value for each category. Representing the data in a horizontal bar graph gives a nice comparison for the different categories.
-
-
-    import matplotlib.pyplot as plt; plt.rcdefaults()
-    plt.figure(figsize=(10,7))
-
-    plt.barh(np.arange(len(light.index)), light.values)
-    plt.yticks(np.arange(len(light.index)), light.index)
-
-![alt text](images/barh.png)
+A box plot is a nice way of showing the shape of the data distribution. There are 5 different numbers obtained from this figure: minimum, lower (first) quartile, median, upper (third) quartile, and maximum. The box spans the interquartile range and the ends of the box are the upper and lower quartiles. The line through the middle indicates the median.
 
 
-### *Wordcloud*
+    trace0 = go.Box(
+        y = data.Birthrate,
+        name = "Birthrates",
+        boxpoints='all',
+        pointpos=0,
+        fillcolor='rgba(255, 255, 255, 0.8)',
+        marker = dict(color = 'rgba(0, 255, 0, 0.8)')
+        )
+    
+    plotdata = go.Figure(data = [trace0])
+    iplot(plotdata)
+
+![alt text](images/box_plot.png)
+
+
+### *H) Wordcloud*
 
 A word cloud is a nice way of visualizing words depending on the frequency of their use. The size of the word correlates to the number of times the word is found in the category.
 
@@ -523,6 +560,20 @@ A word cloud is a nice way of visualizing words depending on the frequency of th
     plt.show()
 
 ![alt text](images/wordcloud.png)
+
+
+### *H) World Projection*
+
+A word cloud is a nice way of visualizing words depending on the frequency of their use. The size of the word correlates to the number of times the word is found in the category.
+
+
+    from wordcloud import WordCloud, STOPWORDS 
+    wordcloud = WordCloud().generate(' '.join(xml_df['LIGHT']))
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.show()
+
+![alt text](images/world_projection_plot.png)
 
 
 
