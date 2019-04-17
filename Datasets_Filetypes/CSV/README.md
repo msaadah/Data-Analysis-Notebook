@@ -107,7 +107,7 @@ HeartDiseaseSet1CSV : data was already clean
 
 
 
-### B)
+## <font color=orange>3B
 
 After cleaning data, it's best to gather basic information done in step 2 to make sure the data is properly cleaned. 
 
@@ -205,7 +205,10 @@ This heatmap gives a correlation value for all parameters relative to each other
 ![alt text](images/heatmap.png)
 
 
-## <font color=orange>*G) Pie Charts*
+
+
+## <font color=orange>G) Pie Charts
+specific to 'TimeUse' dataset
 
 If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way.
 
@@ -224,6 +227,7 @@ You can have multiple pie charts to compare percentages relative to each other i
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
 
 ![alt text](images/multiple_pie_plot.png)
+
 
 
 
