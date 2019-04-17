@@ -1,15 +1,6 @@
 # Data-Analysis-Notebook
 
 
-INCLUDE EXAMPLES FOR DATA MANIPULATION (GROUPBY, TOKENIZING, ENCODING STUFF)
-MOVE DATA FOLDER INTO INDIVIDUAL FOLDERS
-INCLUDE STEPS OF REPOS AND HOW TO RUN FILE: GO TO FILETYPE FOLDER, GO INTO SPECIFIC DATATYPE folder TO GET INFO
-CREATE MULTIPLE README FILES FOR DIFF DATATYPES  --KNOWENG RESERARCH
-series.dtype
-organize folders
-
-The process taken for each these datasets is similar as they follow this pattern:
-
 
 ## 1. Importing packages and Reading Data
 
@@ -19,38 +10,12 @@ In python, there are many built-in functions which kind of act like commands tha
 
 ### *Parsing through different datafile types* 
 
-Of course, the first step to analyzing data is to access it. Since there are datasets coming from different formats (ie csv, xml, json, etc) you need to import the proper commands that allow you to parse through the file. Parsing essentially means having the ability to understand and differentiate different objects in the dataset, such as identifying column and row names and knowing which datapoints correspond to what inputs. 
+Of course, the first step to analyzing data is to access it. Since there are datasets coming from different formats (ie CSV, XML,JSON, etc) you need to import the proper commands that allow you to parse through the file. Parsing essentially means having the ability to understand and differentiate different objects in the dataset, such as identifying column and row names and knowing which datapoints correspond to what inputs. 
 
 One method of extracting the data can be by saving the datafile to a location on your computer and accessing it from there. However, to refrain from having to access the file from different directories on different computers (and make the code transferrable and functionable), the best method would be to have the datafile extracted given a URL as that is a more universal approach. Depending on the different datafiles, there are various modules packages that can be used to read through the file. The following are some examples explored:
 
 ## Importing packages:
 
-
-***DATA : wget***
-
-    import wget
-
-
-***CSV : pandas***
-
-    import pandas as pd
-
-*if using a Mac with Py3, use the following commands:*
-
-    import io
-    import requests
-
-
-***XML : parser***
-
-    import requests                               #makes data from URLs easy to gather
-    import xml.etree.ElementTree as ET 
-    
-
-***JSON : urllib, json***
-
-    import urllib, json
-    from pandas.io.json import json_normalize
 
 
 ***WEBSITE : parser, requests, BeautifulSoup***
@@ -62,109 +27,7 @@ One method of extracting the data can be by saving the datafile to a location on
 
 ## Reading Data
 
-***DATA***
-
-    url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data'
-    cleveland_data = wget.download(url)
-    df = pd.read_csv(cleveland_data, header = None, index_col = False, delimiter = ',')
-
-
-***CSV***
-
-    df = pd.read_csv('https://perso.telecom-paristech.fr/eagan/class/igr204/data/TimeUse.csv')
-    display(HTML(dF.to_html()))
-
-*if using a Mac with Py3, use the following commands:*
-
-    url = 'https://perso.telecom-paristech.fr/eagan/class/igr204/data/TimeUse.csv'
-    s = requests.get(url).content
-    df = pd.read_csv(io.StringIO(s.decode('utf-8')))
-
-
-***XML : parser***
-
-    user_agent_url = 'https://www.w3schools.com/xml/plant_catalog.xml'
-    xml_data = requests.get(user_agent_url).content
-
-    class XML2DataFrame:
-
-        def __init__(self, xml_data):                    #reading into file
-            self.root = ET.XML(xml_data)
-
-
-
-        def parse_root(self, root):                      #list of dictionaries and attributes of the children under this XML root.           
-            return [self.parse_element(child) for child in iter(root)]
-
-
-        def parse_element(self, element, parsed=None):   #Collect {key:attribute} and {tag:text} from XML elements and all children into a single dictionary of strings.
-            if parsed is None:
-                parsed = dict()
-            for key in element.keys():
-                parsed[key] = element.attrib.get(key)
-            if element.text:
-                parsed[element.tag] = element.text
-
-            for child in list(element):                  #apply recursion
-                self.parse_element(child, parsed)
-            return parsed
-
-        def process_data(self):                          #Initiate the root XML, parse it, and return a dataframe
-            structure_data = self.parse_root(self.root)
-            return pd.DataFrame(structure_data)
-
-    xml2df = XML2DataFrame(xml_data)
-    xml_df = xml2df.process_data()
-
-
-***JSON***
-
-    url = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Champaign,IL&key=b884eed1798f46feab4effc907e537a7&hours=1"
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
-
-
-    def get_row(url):
-        #url = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Champaign,IL&key=b884eed1798f46feab4effc907e537a7&hours=1"
-        response = urllib.urlopen(url)
-        data = json.loads(response.read())
-        columns = []
-        data_list = []
-        for key in data:
-            value1= data[key]
-            #print key+'---->'
-            #print value1
-
-            if isinstance(value1,list):
-                for key2 in value1:
-                    #print key2 
-                    if isinstance(key2,dict):
-                        for key3 in key2:
-                    #        print "**********" +key3+'---->'
-                            value3 = key2[key3]
-
-
-                            if isinstance(value3,dict):
-                                for key4 in value3:
-                                    columns.append(key4)
-                                    data_list.append(value3[key4])
-                     #               print "======================================"+key4 +'---->'
-                     #               print "))))))))))))" + str(value3[key4])
-                            else:
-                                columns.append(key3)
-                                data_list.append(value3)
-                                #print columns
-                      #          print " &&&&&&&&&&&&" +str(value3)
-            else:
-                columns.append(key)
-                data_list.append(value1)
-                #print columns
-                #print value1
-
-        return columns,data_list
-    col,row= get_row("https://api.weatherbit.io/v2.0/forecast/hourly?city=Champaign,IL&key=b884eed1798f46feab4effc907e537a7&hours=1")
-
-
+To output the data, it is best to use "data.head()" to get the first 5 rows of the dataset. Displaying the entire dataset takes a lot of processing time and is unnecessary especially before cleaning the data.
 
 
 ***WEBSITE***
@@ -403,29 +266,22 @@ F) .value_counts() : lists out all of the categories and how many values are in 
 After importing data values, you may need to adjust or remove the data for certain functions to be applied. 
 
 ### A)
-#### CSV:
 
-Countries of the World: 
-1. Removing commas to convert numbers from object to float
+#### HTML:
 
-        data.Density = data.Density.str.replace(",",".").astype(float)
-2. Converting certain columns (Country, Region) from type object to category
+UCI Shallow
+1. Replacing empty spaces with 'none'
 
-        data.Country = data.Country.astype('category')
+        data = data.replace('', np.nan)
+        
+2. Converting certain columns from type object to either category or float
 
+        for i in data.columns:
+        if i== 'Name' or i=='Data Types' or i=='Default Task' or i=='Attribute Types':  
+            data[i] = data[i].str.strip().astype('category')
+        else:
+            data[i] = data[i].astype(float)
 
-HeartDiseaseSet1CSV : data was already clean
-
-TimeUseSet2CSV : 
-1. Time was presented as HH:MM, however in a pandas dataframe python is only able to manipulate the data if it is in HH:MM:SS format. After converting to HH:MM:SS, the time value need to be converted to an hour value (eg 10:30:00 = 10.5 hours, not 10.3)
-2. Combining similar column name columns together: there were a lot of misc columns that could be combined to a single one. 
-
-#### XML:
-PlantsSet3XML : data was already clean
-
-FinVizStreamData : code incorporated in parser
-
-WeatherHrly : code incorporated in parser
 
 ### B)
 
@@ -436,49 +292,20 @@ After cleaning data, it's best to gather basic information done in step 2 to mak
 2) .describe() : count, mean, std, 25/50/75th percentiles, min and max values
 
 
+
 ## 4. Manipulating Data
+
 
 ### *Groupby*: 
 This structure extracts specific data from within the dataframe and categorizes all of the data by grouping to a certain value in a category. This returns multiple tables grouping the different outputs in the category you specify. The best way to use this approach is by identifying which category has the smallest number of unique values because the number of categories will be reasonable (typically choose a column with 3-20 unique values so as not to produce more than 20 tables). You can gain more information by choosing to groupby and getting the mean, max, min, etc in each category of the dataframe.
 
 
-### *Tokenizing*:
-Tokenizing is a useful technique if the data you have includes strings. What this method does is it takes the values in a category and makes it into a list. Within that list, each word is separated into a single string.    
+![alt text](images/groupby.JPG)
 
-
-    from nltk.tokenize import word_tokenize
-    tokens = xml_df['LIGHT']. apply(word_tokenize) 
-
-
-INSERT TABLES
-
-
-As mentioned, this method produces a large list with sublists consisting of the strings. To have all of the strings combined into a single list, you can do so by adding the following code:
-
-
-    flattened_list = []
-    for x in tokens:
-        for y in x:
-            flattened_list.append(y)
-    print flattened_list
-
-
-
-### *Label Encoding*:
-Label encoding is a useful way of reassigning different results in a category to a numerical value. Note: the category results need to be a "category" datatype before applying the code to encode the results.
-
-    xml_df['LIGHT']= xml_df['LIGHT'].astype('category')      #convert 'LIGHT' from obj to category
-    xml_df["LIGHT_LE"] = xml_df["LIGHT"].cat.codes              #label encoding
-
-### *Binary*:
-
-The point of binary coding serves as a similar purpose to label encoding where results get reassigned to different values. The only difference is that instead of having different numbers assigned according to the different results, binary encoding labels only one result with 1 and everything else is 0. This makes any comparison focused only on the column labeled "1" since all values don't produce an output.
-
-
-    xml_df["ZONE_binary"] = np.where(xml_df["ZONE"].str.contains("Annual"), 1, 0)
 
 
 ## 5. Data Visualization
+
 
 ### *A) General Plot*
 

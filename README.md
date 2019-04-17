@@ -1,13 +1,6 @@
 # Data-Analysis-Notebook
 
 
-INCLUDE STEPS OF REPOS AND HOW TO RUN FILE: GO TO FILETYPE FOLDER, GO INTO SPECIFIC DATATYPE folder TO GET INFO
-CREATE MULTIPLE README FILES FOR DIFF DATATYPES  --KNOWENG RESERARCH
-series.dtype
-organize folders
-
-The process taken for each these datasets is similar as they follow this pattern:
-
 
 ## 1. Importing packages and Reading Data
 
@@ -17,7 +10,7 @@ In python, there are many built-in functions which kind of act like commands tha
 
 ### *Parsing through different datafile types* 
 
-Of course, the first step to analyzing data is to access it. Since there are datasets coming from different formats (ie csv, xml, json, etc) you need to import the proper commands that allow you to parse through the file. Parsing essentially means having the ability to understand and differentiate different objects in the dataset, such as identifying column and row names and knowing which datapoints correspond to what inputs. 
+Of course, the first step to analyzing data is to access it. Since there are datasets coming from different formats (ie CSV, XML,JSON, etc) you need to import the proper commands that allow you to parse through the file. Parsing essentially means having the ability to understand and differentiate different objects in the dataset, such as identifying column and row names and knowing which datapoints correspond to what inputs. 
 
 One method of extracting the data can be by saving the datafile to a location on your computer and accessing it from there. However, to refrain from having to access the file from different directories on different computers (and make the code transferrable and functionable), the best method would be to have the datafile extracted given a URL as that is a more universal approach. Depending on the different datafiles, there are various modules packages that can be used to read through the file. The following are some examples explored:
 
@@ -60,23 +53,27 @@ One method of extracting the data can be by saving the datafile to a location on
 
 ## Reading Data
 
+To output the data, it is best to use "data.head()" to get the first 5 rows of the dataset. Displaying the entire dataset takes a lot of processing time and is unnecessary especially before cleaning the data.
+
 ***DATA***
 
     url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data'
     cleveland_data = wget.download(url)
     df = pd.read_csv(cleveland_data, header = None, index_col = False, delimiter = ',')
+    df.head()
 
 
 ***CSV***
 
     df = pd.read_csv('https://perso.telecom-paristech.fr/eagan/class/igr204/data/TimeUse.csv')
-    display(HTML(dF.to_html()))
+    df.head()
 
 *if using a Mac with Py3, use the following commands:*
 
     url = 'https://perso.telecom-paristech.fr/eagan/class/igr204/data/TimeUse.csv'
     s = requests.get(url).content
     df = pd.read_csv(io.StringIO(s.decode('utf-8')))
+    df.head()
 
 
 ***XML : parser***
@@ -113,6 +110,7 @@ One method of extracting the data can be by saving the datafile to a location on
 
     xml2df = XML2DataFrame(xml_data)
     xml_df = xml2df.process_data()
+    xml_df.head()
 
 
 ***JSON***
