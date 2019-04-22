@@ -30,7 +30,7 @@ After reading the data into a dataframe, we can apply basic functions to get qua
 
 ***
 
-After importing data values, you may need to adjust or remove the data for certain functions to be applied. 
+After importing data values, you may need to adjust, remove, or clean the data.
 
 
 ## 3A
@@ -72,7 +72,7 @@ After cleaning data, it's best to gather basic information again as in Part 2 to
 
 ## *Groupby*: 
 
-This method of organization clusters the output of the data depending on a specific category. For example, in the TimeUse data, similar country names were combined and the mean was found for all of those output values to get a single value.
+This method clusters the output of the data depending on a specific category. For example, in the TimeUse data, similar country names were combined and the mean was found for all of those output values to get a single value.
 
 
 
