@@ -4,7 +4,7 @@
 
 ***
 
-# 1. Importing packages and Reading Data
+# 1. Importing packages
 
 ***
 
