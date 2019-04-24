@@ -1,4 +1,4 @@
-# How to Manipulate XLS File
+# How to Manipulate HTML/PHP File
 
 
 
@@ -10,20 +10,20 @@
 
 
 
-For an XLS file, you need to import the same packages as you would with a CSV. 
-   
-   
-   
-   
+For HTML/PHP data, you need to import "BeautifulSoup" which is used to look into components in a website. "request" is another module to open up data from a URL.   
+
+
+
+
 ***
 
 # 2. Reading Data
 
 ***
 
-For an XLS file, instead of using "pd.read_csv(filename)" you use "pd.read_excel(filename)".
+For HTML/PHP data, you use BeautifulSoup with an html parser to get extract the data you want from a website.
 
-
+   
 
 
 ***
@@ -44,8 +44,19 @@ After reading through the dataset and getting a table of values, we use a few co
 
 ***
 
+After importing data values, you may need to adjust or remove the data for certain functions to be applied. 
 
-This file doesn't require any cleaning so data will remain as is.  
+
+### A)
+
+
+UCI Database Data (Shallow): Replacing empty spaces with 'none' + changing column types
+
+
+
+### B)
+
+After cleaning data, it's best to gather basic information done in step 2 to make sure the data is properly cleaned and column names are changed the way they are specified. 
 
 
 
@@ -57,9 +68,9 @@ This file doesn't require any cleaning so data will remain as is.
 ***
 
 
-## *Groupby*: 
+### *Groupby*: 
 
-This method clusters the output of the data depending on a specific category. For example, the number of deaths for each Cause_name was given.  
+This method clusters the output of the data depending on a specific category. For example, in the Obesity data the number of samples from each state was given. 
 
 
 
@@ -104,3 +115,6 @@ This may look similar to a histogram but doesn't necessarily try to fit the resu
 ### *F) Heatmap*
 
 This heatmap gives a correlation value for all parameters relative to each other. It is very nice to visually determine whether one category is correlated to another based on the color. Note: it is expected that categories compared against each other are going to be 1 meaning exact same correlation). In the plot, there should be a diagonal of 1s and both sides opposite of the diagonal should be symmetric to each other. 
+
+  
+        

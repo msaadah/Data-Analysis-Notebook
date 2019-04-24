@@ -4,19 +4,31 @@
 
 ***
 
-# 1. Importing packages and Reading Data
+# 1. Importing packages
 
 ***
 
 
 
 For a JSON file, you need to import "json" which helps to read and extract data from json files and put into a pandas dataframe. "urllib" is another module to import which helps to open URLs.   
+
+
+
+
+***
+
+# 2. Reading Data
+
+***
+
+For a JSON file, you use "ijson.items()" with parameter "meta.view.columns.item". The code is similar to read into any JSON file.
+
    
 
 
 ***
 
-# 2. Gathering Basic Info
+# 3. Gathering Basic Info
 
 ***
 
@@ -27,7 +39,7 @@ After reading through the dataset and getting a table of values, we use a few co
 
 ***
 
-# 3. Cleaning data into readable format
+# 4. Cleaning data into readable format
 
 ***
 
@@ -50,7 +62,7 @@ After cleaning data, it's best to gather basic information done in step 2 to mak
 
 ***
 
-# 4. Manipulating Data
+# 5. Manipulating Data
 
 ***
 
@@ -65,7 +77,7 @@ This method clusters the output of the data depending on a specific category. Fo
 
 ***
 
-# 5. Data Visualization
+# 6. Data Visualization
 
 ***
 

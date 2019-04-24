@@ -4,19 +4,29 @@
 
 ***
 
-# 1. Importing packages and Reading Data
+# 1. Importing packages
 
 ***
 
 
 
-For a XML file, you need to import "requests" which makes it easy to extract information from a URL. Since the format is in XML, you import "xml.tree" which helps to read through the data structure. This filetype uses a parser which helps to organize the data into a pandas dataframe.  
+For a XML file, you need to import "requests" which makes it easy to extract information from a URL. Since the format is in XML, you import "xml.tree" which helps to read through the data structure. 
+
+
+
+***
+
+# 2. Reading Data
+
+***
+
+This filetype uses a parser which helps to organize the data into a pandas dataframe because it is easier to specify where each parent and child should belong.
    
 
 
 ***
 
-# 2. Gathering Basic Info
+# 3. Gathering Basic Info
 
 ***
 
@@ -27,7 +37,7 @@ After reading through the dataset and getting a table of values, we use a few co
 
 ***
 
-# 3. Cleaning data into readable format
+# 4. Cleaning data into readable format
 
 ***
 
@@ -50,7 +60,7 @@ After cleaning data, it's best to gather basic information done in step 2 to mak
 
 ***
 
-# 4. Manipulating Data
+# 5. Manipulating Data
 
 ***
 
@@ -101,7 +111,7 @@ The point of binary coding serves as a similar purpose to label encoding where r
 
 ***
 
-# 5. Data Visualization
+# 6. Data Visualization
 
 ***
 

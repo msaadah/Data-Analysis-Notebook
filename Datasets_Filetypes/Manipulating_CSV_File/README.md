@@ -12,10 +12,19 @@ For a CSV file, importing 'pandas' is sufficient for reading and organizing the 
 
 
 
+***
+
+# 2. Reading Data
 
 ***
 
-# 2. Gathering Basic Info
+For a CSV file, "pd.read_csv(filename)" is enough to read through the datafile.
+
+
+
+***
+
+# 3. Gathering Basic Info
 
 ***
 
@@ -26,14 +35,14 @@ After reading the data into a dataframe, we can apply basic functions to get qua
         
 ***
 
-# 3. Cleaning data into readable format
+# 4. Cleaning data into readable format
 
 ***
 
 After importing data values, you may need to adjust, remove, or clean the data.
 
 
-## 3A
+## 4A
 
 #### CSV:
 
@@ -56,7 +65,7 @@ After importing data values, you may need to adjust, remove, or clean the data.
 
 
 
-## 3B
+## 4B
 
 After cleaning data, it's best to gather basic information again as in Part 2 to make sure the data is properly cleaned. 
 
@@ -65,7 +74,7 @@ After cleaning data, it's best to gather basic information again as in Part 2 to
 
 ***
 
-# 4. Manipulating Data
+# 5. Manipulating Data
 
 ***
 
@@ -79,7 +88,7 @@ This method clusters the output of the data depending on a specific category. Fo
 
 ***
 
-# 5. Data Visualization
+# 6. Data Visualization
 
 ***
 
@@ -123,8 +132,6 @@ This may look similar to a histogram but doesn't necessarily try to fit the resu
 
 This heatmap gives a correlation value for all parameters relative to each other. It is very nice to visually determine whether one category is correlated to another based on the color. Note: it is expected that categories compared against each other are going to be 1 meaning exact same correlation). In the plot, there should be a diagonal of 1s and both sides opposite of the diagonal should be symmetric to each other. 
 
-   
-
 
 
 ## G) Pie Charts
@@ -133,7 +140,6 @@ specific to 'TimeUse' dataset
 If the data you have can be presented in percentages or proportions, you may use a pie chart to present the data in a more visual way. You can have multiple pie charts to compare percentages relative to each other if there is data for multiple entries
 
 
-  
 
 
 ## *H) Box Plot*
@@ -141,8 +147,6 @@ specific to 'Countries of the World' dataset
 
 A box plot is a nice way of showing the shape of the data distribution. There are 5 different numbers obtained from this figure: minimum, lower (first) quartile, median, upper (third) quartile, and maximum. The box spans the interquartile range and the ends of the box are the upper and lower quartiles. The line through the middle indicates the median.
 
-
- 
 
 
 
@@ -157,7 +161,7 @@ A word cloud is a nice way of visualizing words depending on the frequency of th
 
 ***
 
-# 6. Statistical testing
+# 7. Statistical testing
 
 ***
 
