@@ -20,6 +20,8 @@ For a CSV file, importing 'pandas' is sufficient for reading and organizing the 
 
 For a CSV file, "pd.read_csv(filename)" is enough to read through the datafile.
 
+For the "Heart Disease" dataset, the file is a .data. You can open it through Excel by searching for all filetypes.
+
 
 
 ***
