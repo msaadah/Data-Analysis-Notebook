@@ -32,6 +32,12 @@ For the "Heart Disease" dataset, the file is a .data. You can open it through Ex
 
 After reading the data into a dataframe, we can apply basic functions to get quantitative information.
 
+data.info()
+data.dtypes
+data.describe()
+data.isnull().sum()
+data.nunique()
+data.Column.value_counts()
 
 
         

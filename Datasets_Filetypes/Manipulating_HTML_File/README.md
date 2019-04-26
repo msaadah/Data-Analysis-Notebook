@@ -10,7 +10,7 @@
 
 
 
-For HTML/PHP data, you need to import "BeautifulSoup" which is used to look into components in a website. "request" is another module to open up data from a URL.   
+For HTML/PHP data, you need to import "BeautifulSoup" which is a Python package used to parse through HTML/website. "request" is another module to open up data from a URL.   
 
 
 
@@ -23,6 +23,7 @@ For HTML/PHP data, you need to import "BeautifulSoup" which is used to look into
 
 For HTML/PHP data, you use BeautifulSoup with an html parser to get extract the data you want from a website.
 
+
    
 
 
@@ -32,8 +33,14 @@ For HTML/PHP data, you use BeautifulSoup with an html parser to get extract the 
 
 ***
 
-After reading through the dataset and getting a table of values, we use a few commands to extract basic information. 
+After reading through the dataset and getting a table of values, we use a few commands to extract basic information.  
 
+data.info()
+data.dtypes
+data.describe()
+data.isnull().sum()
+data.nunique()
+data.Column.value_counts()
 
 
 
@@ -59,6 +66,8 @@ UCI Database Data (Shallow): Replacing empty spaces with 'none' + changing colum
 After cleaning data, it's best to gather basic information done in step 2 to make sure the data is properly cleaned and column names are changed the way they are specified. 
 
 
+data.dtypes
+data.describe()
 
 
 ***

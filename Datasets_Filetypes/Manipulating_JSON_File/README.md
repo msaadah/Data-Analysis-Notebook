@@ -34,6 +34,12 @@ For a JSON file, you use "ijson.items()" with parameter "meta.view.columns.item"
 
 After reading through the dataset and getting a table of values, we use a few commands to extract basic information. 
 
+data.info()
+data.dtypes
+data.describe()
+data.isnull().sum()
+data.nunique()
+data.Column.value_counts()
 
 
 

@@ -34,7 +34,12 @@ For an XLS file, instead of using "pd.read_csv(filename)" you use "pd.read_excel
 
 After reading through the dataset and getting a table of values, we use a few commands to extract basic information. 
 
-
+data.info()
+data.dtypes
+data.describe()
+data.isnull().sum()
+data.nunique()
+data.Column.value_counts()
 
 
 
